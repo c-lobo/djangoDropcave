@@ -1,8 +1,10 @@
 {% extends "myApp/base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 <body>
-    <div class="container bg-light shadow-md p-5">
+    <div class="container bg-light shadow-md p-5 form-layout">
         <h3>Create your account</h3>
         <h5>Manage Clients</h5>
         <hr>
@@ -10,9 +12,15 @@
 
         <form method='POST' autocomplete="off">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form.username|as_crispy_field }}
             <br>
-            <button type='submit' class='btn btn-primary w-100 btn-block p-2'>Create Account</button>
+            {{ form.password1|as_crispy_field }}
+            <br>
+            {{ form.password2|as_crispy_field }}
+
+            <br>
+            <button type='submit' class='btn btn-primary w-100 btn-block p-2'>Create Account <i class="fa fa-user-plus" aria-hidden="true"></i>
+            </button>
         </form>
         <br>
         <div class='text-center'>
